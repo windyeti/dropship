@@ -8,7 +8,7 @@ class Services::GettingProductDistributer::Maytoni
     uri = "https://onec-dev.s3.amazonaws.com/upload/public/documents/all.csv"
 
     FileUtils.rm_rf(Dir.glob('public/maytoni.csv'))
-    FileUtils.rm_rf(Dir.glob('tmp/image_aws/*.*'))
+    FileUtils.rm_rf(Dir.glob('public/image_aws/*.*'))
 
     File.open("#{Rails.root.join('public', 'maytoni.csv')}", 'w') {|f|
       block = proc { |response|
@@ -80,12 +80,12 @@ class Services::GettingProductDistributer::Maytoni
 
   def self.get_image_aws(url)
     filename = url.split('/').last.gsub(/.jpeg$/, ".jpg")
-    File.open("#{Rails.root.join('tmp', 'image_aws', filename)}", 'w') {|f|
+    File.open("#{Rails.root.join('public', 'image_aws', filename)}", 'w') {|f|
       block = proc { |response|
         f.write response.body.force_encoding('UTF-8')
       }
       RestClient::Request.new(method: :get, url: url, block_response: block).execute
     }
-    Rails.root.join('tmp', 'image_aws', filename).to_s
+    "http://164.92.252.76/image_aws/#{(filename)}"
   end
 end
