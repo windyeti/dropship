@@ -53,7 +53,7 @@ class Services::GettingProductDistributer::Maytoni
       end
 
       data = {
-        fid: row["vendorCode"] + "Maytoni",
+        fid: row["vendorCode"] + "__Maytoni",
         title: row["name"],
         url: row["url"],
         sku: row["vendorCode"],
