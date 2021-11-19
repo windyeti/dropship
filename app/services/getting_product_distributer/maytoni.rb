@@ -23,7 +23,7 @@ class Services::GettingProductDistributer::Maytoni
 
     param_name = Services::CompareParams.new("Maytoni")
     arr_exclude = [
-      "id", "available", "name", "Stock", "barcode", "price", "Фото1", "Фото2", "Фото3", "Фото4", "Фото5", "Фото6", "Фото7", "Фото8"
+      "id", "available", "name", "Stock", "barcode", "vendorCode", "price", "Категория", "Фото1", "Фото2", "Фото3", "Фото4", "Фото5", "Фото6", "Фото7", "Фото8"
     ]
     rows.each do |row|
       params = []
