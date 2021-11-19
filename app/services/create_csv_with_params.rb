@@ -11,7 +11,12 @@ class Services::CreateCsvWithParams
     image: 'Изображения',
     url: 'Параметр: OLDLINK',
     cat: 'Корневая',
-    cat1: 'Подкатегория 1'
+    cat1: 'Подкатегория 1',
+    cat2: 'Подкатегория 2',
+    cat3: 'Подкатегория 3',
+    cat4: 'Подкатегория 4',
+    cat5: 'Подкатегория 5',
+    barcode: 'Штрихкод',
   }.freeze
 
     def self.call

@@ -23,12 +23,7 @@ class Services::GettingProductDistributer::Maytoni
 
     param_name = Services::CompareParams.new("Maytoni")
     arr_exclude = [
-      "name", "vendorCode", "price", "currencyId", "Stock", "style_name", "Гарантия", "barcode", "КодТНВЭД",
-      "ТипМонтажаВстраиваемогоСветильника", "Типы помещении", "ТипПотолочногоКрепления", "ФормаМонтажногоОтверстияВстраиваемогоСветильника",
-      "ДиаметрМонтажногоОтверстияВстраиваемогоСветильника", "ГлубинаМонтажногоОтверстияВстраиваемогоСветильника", "ШиринаМонтажногоОтверстияВстраиваемогоСветильника",
-      "ДлинаМонтажногоОтверстияВстраиваемогоСветильника", "Цепь", "ДлинаЦепи", "ЛампыВКомплекте", "Цоколь", "КоличествоЛамп", "СветовойПоток", "УголРассеивания",
-      "ИндексЦветопередачи", "ЦветоваяТемпература", "АналогЛампыНакаливания", "Класс Электрозащиты", "ingress_protection_rating", "Чаша крепления", "Напряжение",
-      "Мощность", "ВесНетто", "ВесБрутто"
+      "id", "available", "name", "Stock", "barcode", "Фото1", "Фото2", "Фото3", "Фото4", "Фото5", "Фото6", "Фото7", "Фото8"
     ]
     rows.each do |row|
       params = []
@@ -58,7 +53,7 @@ class Services::GettingProductDistributer::Maytoni
       end
 
       data = {
-        fid: row["vendorCode"],
+        fid: row["vendorCode"] + "Maytoni",
         title: row["name"],
         url: row["url"],
         sku: row["vendorCode"],
@@ -66,7 +61,8 @@ class Services::GettingProductDistributer::Maytoni
         image: photos.join(" "),
         cat: "Maytoni",
         cat1: row["Категория"],
-        price: row["price"],
+        barcode: row["barcode"],
+        price: row["price"].present? ? row["price"] : 0,
         quantity: row["Stock"],
         p1: params.join(" --- "),
         check: true

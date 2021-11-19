@@ -43,8 +43,6 @@
 		      <th>sku</th>
 		      <th>Title</th>
 		      <th>Sdesc</th>
-		      <th>Desc</th>
-		      <th>OldPrice</th>
 		      <th>Price</th>
 		      <th>Pict</th>
 		      <th>Cat</th>
@@ -54,21 +52,6 @@
 		      <th><%=  sort_link(@search, :p1, 'P1')%></th>
 		      <th><%=  sort_link(@search, :p2, 'P2')%></th>
 		      <th>P3</th>
-		      <th>P4</th>
-		      <th>option1</th>
-		      <th>option2</th>
-		      <th>option3</th>
-		      <th>option4</th>
-		      <th>option5</th>
-		      <th>option6</th>
-		      <th>option7</th>
-		      <th>option8</th>
-		      <th>option9</th>
-		      <th>option10</th>
-		      <th>option11</th>
-		      <th>option12</th>
-		      <th>option13</th>
-		      <th>option14</th>
 		      <th>mtitle</th>
 		      <th>mdesc</th>
 		      <th>mkeyw</th>
@@ -102,18 +85,9 @@
 		        <td><%= product.price %></td>
 		        <td><%= product.image %></td>
 		        <td><%= product.cat %></td>
-		        <td>
-							<a href="#"
-								 class="product-editable editable editable-click"
-								 data-type="text"
-								 data-resource="product"
-								 data-name="cat1"
-								 data-url="/products/<%= product.id %>"
-								 data-original-title="Cat1">
-								<%= product.cat1 %>
-							</a>
-						</td>
-						</td>
+		        <td><%= product.cat1 %></td>
+		        <td><%= product.cat2 %></td>
+		        <td><%= product.cat3 %></td>
 		        <td><%= product.p1.at(0..50) if product.p1 != nil %></td>
 		        <td><%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe,
 														product,
