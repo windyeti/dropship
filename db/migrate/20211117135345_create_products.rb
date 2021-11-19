@@ -9,11 +9,6 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :image
       t.string :cat
       t.string :cat1
-      t.string :cat2
-      t.string :cat3
-      t.string :cat4
-      t.string :cat5
-      t.string :barcode
       t.decimal :price
       t.integer :quantity
       t.string :p1

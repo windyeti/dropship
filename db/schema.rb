@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_034921) do
+ActiveRecord::Schema.define(version: 2021_11_19_183107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,6 @@ ActiveRecord::Schema.define(version: 2021_11_19_034921) do
     t.string "image"
     t.string "cat"
     t.string "cat1"
-    t.string "cat2"
-    t.string "cat3"
-    t.string "cat4"
-    t.string "cat5"
-    t.string "barcode"
     t.decimal "price"
     t.integer "quantity"
     t.string "p1"
@@ -53,6 +48,11 @@ ActiveRecord::Schema.define(version: 2021_11_19_034921) do
     t.boolean "check", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "barcode"
+    t.string "cat2"
+    t.string "cat3"
+    t.string "cat4"
+    t.string "cat5"
   end
 
   create_table "users", force: :cascade do |t|
