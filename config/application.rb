@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module Dropship
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.active_job.queue_adapter = :delayed_job
+
     config.load_defaults 5.2
 
     config.autoload_paths += %W(#{config.root}/app #{config.root}/app/services)
