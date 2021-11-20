@@ -29,11 +29,6 @@ class Services::GettingProductDistributer::Maytoni
       params = []
       row.each do |key, value|
 
-        if key == "vendorCode"
-          p "----------- #{value}"
-          p !arr_exclude.include?(key)
-        end
-
         if value.present? && !arr_exclude.include?(key)
           name = param_name.compare(key)
 
@@ -49,14 +44,11 @@ class Services::GettingProductDistributer::Maytoni
         end
       end
 
-p params.join(" --- ").match(/Артикул/)
-      sleep 3
-
       photos = []
       (1..8).each do |num|
         photo = row["Фото#{num}"]
         if photo&.match(/onec-dev.s3/)
-          photo = get_image_aws(photo)
+          p photo = get_image_aws(photo)
         end
         photos << photo unless photo.nil?
       end
