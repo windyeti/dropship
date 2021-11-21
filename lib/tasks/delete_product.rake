@@ -32,7 +32,7 @@ namespace :product do
       case response.code
       when 200
         puts "sleep 0.5 #{id_product} товар удалили"
-        sleep 0.8
+        sleep 2
         result_body = JSON.parse(response.body)
       when 422
         puts "error 422 - не добавили категорию"

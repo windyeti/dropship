@@ -40,7 +40,7 @@ class Services::GettingProductDistributer::Maytoni
             end
           end
 
-          params << "#{name}: #{value}" unless name.nil?
+          params << "#{name}: #{value.gsub(",","##")}"
         end
       end
 
