@@ -7,11 +7,10 @@ class Services::CompareParams
   end
 
   def compare(param)
-      # p "param --> #{param.gsub(/"{2}/, '"').gsub(/^"|"$/, "").gsub(/\\/, "")}"
+    # param = param.gsub(/^"|"$/, "") rescue nil
     @map_params ||= get_map_params
     result = @map_params.find do |hash|
-      # p hash[:name_provider]
-      hash[:name_provider] == param.gsub(/"{2}/, '"').gsub(/^"|"$/, "").gsub(/\\/, "")
+      hash[:name_provider] == param
     end
     result.present? ? result[:name_param] : param
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_183107) do
+ActiveRecord::Schema.define(version: 2021_11_22_181450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_11_19_183107) do
     t.string "cat3"
     t.string "cat4"
     t.string "cat5"
+    t.string "video"
   end
 
   create_table "users", force: :cascade do |t|

@@ -6,8 +6,8 @@ namespace :p do
   end
 
   task w: :environment do
-    Services::GettingProductDistributer::Maytoni.call
-    # Services::GettingProductDistributer::Swg.call
+    # Services::GettingProductDistributer::Maytoni.call
+    Services::GettingProductDistributer::Swg.call
   end
 
 
