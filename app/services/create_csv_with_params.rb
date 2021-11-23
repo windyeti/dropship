@@ -9,14 +9,16 @@ class Services::CreateCsvWithParams
     price: 'Цена продажи',
     quantity: 'Остаток',
     image: 'Изображения',
+    distributor: 'Производитель',
+    video: 'Допю. поле: Видео',
     url: 'Параметр: OLDLINK',
+    barcode: 'Штрих-код',
     cat: 'Корневая',
     cat1: 'Подкатегория 1',
     cat2: 'Подкатегория 2',
     cat3: 'Подкатегория 3',
     cat4: 'Подкатегория 4',
     cat5: 'Подкатегория 5',
-    barcode: 'Штрихкод',
   }.freeze
 
     def self.call

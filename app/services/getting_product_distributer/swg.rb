@@ -54,7 +54,7 @@ class Services::GettingProductDistributer::Swg
       photos << row["\"Детальная картинка (путь)\""] if row["\"Детальная картинка (путь)\""]
       photos += row["\"Фотографии галереи [MORE_PHOTO]\""].split("##") if row["\"Фотографии галереи [MORE_PHOTO]\""].present?
 
-      pp data = {
+      data = {
         fid: row["﻿\"Внешний код\""].gsub(/"/, "") + "__SWG",
         title: row["\"Длинное наименование [OLD_NAME]\""] ? row["\"Длинное наименование [OLD_NAME]\""].gsub(/"/, "") : nil,
         url: row["﻿\"Внешний код\""].gsub(/"/, ""),
