@@ -59,7 +59,7 @@ class Services::GettingProductDistributer::Maytoni
         photos << photo unless photo.nil?
       end
 
-      pp data = {
+      data = {
         fid: row["vendorCode"] + "__Maytoni",
         title: row["name"],
         url: row["url"],
@@ -75,8 +75,8 @@ class Services::GettingProductDistributer::Maytoni
         check: true
       }
 
-      # product = Product.find_by(fid: data[:fid])
-      # product ? product.update(data) : Product.create(data)
+      product = Product.find_by(fid: data[:fid])
+      product ? product.update(data) : Product.create(data)
     end
     puts '=====>>>> FINISH Maytoni CSV '+Time.now.to_s
   end
