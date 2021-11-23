@@ -5,8 +5,11 @@ namespace :p do
     func_compare.compare("ingress_protection_rating")
   end
 
-  task w: :environment do
-    # Services::GettingProductDistributer::Maytoni.call
+  task maytoni: :environment do
+    Services::GettingProductDistributer::Maytoni.call
+  end
+
+  task swg: :environment do
     Services::GettingProductDistributer::Swg.call
   end
 
