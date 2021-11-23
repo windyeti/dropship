@@ -57,8 +57,8 @@ class Services::GettingProductDistributer::Swg
       data = {
         fid: row["﻿\"Внешний код\""].gsub(/"/, "") + "__SWG",
         title: row["\"Длинное наименование [OLD_NAME]\""] ? row["\"Длинное наименование [OLD_NAME]\""].gsub(/"/, "") : nil,
-        url: row["﻿\"Внешний код\""].gsub(/"/, ""),
-        sku: row["\"URL страницы детального просмотра\""] ? row["\"URL страницы детального просмотра\""].gsub(/"/, "") : nil,
+        sku: row["﻿\"Внешний код\""].gsub(/"/, ""),
+        url: row["\"URL страницы детального просмотра\""] ? row["\"URL страницы детального просмотра\""].gsub(/"/, "") : nil,
         distributor: "SWG",
         image: photos.join(" ").gsub(/"| $/, ""),
         cat: "SWG",
