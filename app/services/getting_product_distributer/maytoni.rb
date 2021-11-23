@@ -22,14 +22,18 @@ class Services::GettingProductDistributer::Maytoni
     end
 
     param_name = Services::CompareParams.new("Maytoni")
-    arr_exclude = [
-      "﻿id", "available", "name", "Stock", "barcode", "vendorCode", "price", "Категория", "Фото1", "Фото2", "Фото3", "Фото4", "Фото5", "Фото6", "Фото7", "Фото8"
+    arr_exclude_key = [
+      "﻿id", "available", "name", "Stock", "barcode", "vendorCode", "price", "Категория", "url", "currencyId",
+      "Фото1", "Фото2", "Фото3", "Фото4", "Фото5", "Фото6", "Фото7", "Фото8"
+    ]
+    arr_exlude_one_value = [
+      "Вес нетто, кг", "Вес брутто, кг"
     ]
     rows.each do |row|
       params = []
       row.each do |key, value|
 
-        if value.present? && !arr_exclude.include?(key)
+        if value.present? && !arr_exclude_key.include?(key)
           name = param_name.compare(key)
 
           if name == "Тип лампы"
@@ -39,8 +43,10 @@ class Services::GettingProductDistributer::Maytoni
               next
             end
           end
-
-          params << "#{name}: #{value.gsub(",","##")}"
+          if !arr_exlude_one_value.include?(name)
+            value = value.gsub(",","##")
+          end
+          params << "#{name}: #{value}"
         end
       end
 
@@ -53,7 +59,7 @@ class Services::GettingProductDistributer::Maytoni
         photos << photo unless photo.nil?
       end
 
-      data = {
+      pp data = {
         fid: row["vendorCode"] + "__Maytoni",
         title: row["name"],
         url: row["url"],
@@ -69,8 +75,8 @@ class Services::GettingProductDistributer::Maytoni
         check: true
       }
 
-      product = Product.find_by(fid: data[:fid])
-      product ? product.update(data) : Product.create(data)
+      # product = Product.find_by(fid: data[:fid])
+      # product ? product.update(data) : Product.create(data)
     end
     puts '=====>>>> FINISH Maytoni CSV '+Time.now.to_s
   end
