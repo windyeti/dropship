@@ -31,8 +31,8 @@ namespace :product do
     RestClient.delete( url_api_category, :accept => :json, :content_type => "application/json") do |response, request, result, &block|
       case response.code
       when 200
-        puts "sleep 0.5 #{id_product} товар удалили"
-        sleep 2
+        puts "sleep 1 #{id_product} товар удалили"
+        sleep 1
         result_body = JSON.parse(response.body)
       when 422
         puts "error 422 - не добавили категорию"
