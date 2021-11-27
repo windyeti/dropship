@@ -29,8 +29,8 @@ class ProductsController < ApplicationController
   end
 
   def create_csv_with_params
-    Services::CreateCsvWithParams.call
-    redirect_to "/product_output.csv", notice: "CREATE CSV WITH PARAMS OK"
+    CreateCsvJob.perform_later
+    redirect_to products_path, notice: "CREATE CSV WITH PARAMS OK"
     # redirect_to products_path, notice: "CREATE CSV WITH PARAMS OK"
   end
 

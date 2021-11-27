@@ -1,6 +1,6 @@
 class Services::GettingProductDistributer::Lightstar
   def self.call
-    puts '=====>>>> START Lightstar YML '+Time.now.to_s
+    puts '=====>>>> START Lightstar YML '+Time.now
 
     Product.where(distributor: "Lightstar").each {|tov| tov.update(quantity: 0, check: false)}
 
@@ -38,7 +38,7 @@ class Services::GettingProductDistributer::Lightstar
       catId = doc_offer.xpath("categoryId").text
       cats = get_cats(categories[catId])
 
-      pp data = {
+      data = {
         fid: doc_offer["id"] + "___lightstar",
         title: hash_arr_params["Наименование для интернет-магазина"] ? hash_arr_params["Наименование для интернет-магазина"].join("") : nil,
         sku: hash_arr_params["Артикул"] ? hash_arr_params["Артикул"].join("").gsub(/\s$/, "") : nil,
@@ -69,7 +69,9 @@ class Services::GettingProductDistributer::Lightstar
 
       product = Product.find_by(fid: data[:fid])
       product ? product.update(data) : Product.create(data)
+    puts 'ok'
     end
+    puts '=====>>>> FINISH Lightstar YML '+Time.now
   end
 
   def self.product_params(hash_arr_params, param_name)

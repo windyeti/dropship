@@ -25,7 +25,7 @@ class Services::GettingProductDistributer::Mantra
       catId = doc_offer.xpath("categoryId").text
       cats = get_cats(categories[catId])
 
-      pp data = {
+      data = {
         fid: doc_offer["id"] + "___mantra",
         title: doc_offer.xpath("model") ? doc_offer.xpath("model").text : nil,
         sku: hash_arr_params["Артикул"] ? hash_arr_params["Артикул"].join("") : nil,
@@ -48,6 +48,7 @@ class Services::GettingProductDistributer::Mantra
 
       product = Product.find_by(fid: data[:fid])
       product ? product.update(data) : Product.create(data)
+      puts "ok"
     end
     puts '=====>>>> FINISH Mantra YML '+Time.now.to_s
   end
