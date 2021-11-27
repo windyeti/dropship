@@ -110,7 +110,7 @@ class Services::GettingProductDistributer::Swg
       photos = photos.map {|src| "https://swgshop.ru#{src}" if src.match(/^\//)}.reject(&:nil?)
 if row["﻿\"Внешний код\""] == "\"00000000754\""
       pp data = {
-        fid: row["﻿\"Внешний код\""].gsub(/"/, "") + "__SWG",
+        fid: row["﻿\"Внешний код\""].gsub(/"/, "") + "___swg",
         title: row["\"Уникальное наименование в детальной карточке товара [H1_DETAIL]\""] ? row["\"Уникальное наименование в детальной карточке товара [H1_DETAIL]\""].gsub(/"/, "") : nil,
         sku: row["﻿\"Внешний код\""].gsub(/"/, ""),
         url: row["\"URL страницы детального просмотра\""] ? "https://swgshop.ru" + row["\"URL страницы детального просмотра\""].gsub(/"/, "") : nil,
@@ -123,7 +123,11 @@ if row["﻿\"Внешний код\""] == "\"00000000754\""
         price: row["\"Цена \"\"Розничная цена\"\"\""].present? ? row["\"Цена \"\"Розничная цена\"\"\""].gsub(/"/, "") : 0,
         quantity: row["\"Количество на складе \"\"Основной склад (с. Дмитровское)\"\"\""] ? row["\"Количество на складе \"\"Основной склад (с. Дмитровское)\"\"\""].gsub(/"/, "") : 0,
         p1: params.join(" --- "),
-          video: youtube_link[row["﻿\"Внешний код\""]] ? youtube_link[row["﻿\"Внешний код\""]].gsub(/"/, "") : nil,
+        video: youtube_link[row["﻿\"Внешний код\""]] ? youtube_link[row["﻿\"Внешний код\""]].gsub(/"/, "") : nil,
+        currency: row["\"Валюта для цены \"\"Розничная цена\"\"\""] ? row["\"Валюта для цены \"\"Розничная цена\"\"\""].gsub(/"/, "") : nil,
+        mtitle: row["\"Заголовок окна браузера [TITLE]\""] ? row["\"Заголовок окна браузера [TITLE]\""].gsub(/"/, "") : nil,
+        mdesc: row["\"Мета-описание [META_DESCRIPTION]\""] ? row["\"Мета-описание [META_DESCRIPTION]\""].gsub(/"/, "") : nil,
+        mkeywords: nil,
         check: true
       }
       # product = Product.find_by(fid: data[:fid])

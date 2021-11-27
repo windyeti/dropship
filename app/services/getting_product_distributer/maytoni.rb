@@ -60,17 +60,19 @@ class Services::GettingProductDistributer::Maytoni
       end
 
       data = {
-        fid: row["vendorCode"] + "__Maytoni",
+        fid: row["vendorCode"] + "___maytoni",
         title: row["name"],
         url: row["url"],
         sku: row["vendorCode"],
         distributor: "Maytoni",
+        vendor: row["vendor"],
         image: photos.join(" "),
         cat: "Maytoni",
         cat1: row["Категория"],
         barcode: row["barcode"],
         price: row["price"].present? ? row["price"] : 0,
         quantity: row["Stock"],
+        currency: row["currencyId"],
         p1: params.join(" --- "),
         check: true
       }

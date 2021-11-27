@@ -13,24 +13,58 @@ namespace :p do
     Services::GettingProductDistributer::Swg.call
   end
 
-  task swg2: :environment do
-    Services::GettingProductDistributer::Swg2.call
+  task mantra: :environment do
+    Services::GettingProductDistributer::Mantra.call
+  end
+
+  task lightstar: :environment do
+    Services::GettingProductDistributer::Lightstar.call
+  end
+
+  task s: :environment do
+    arr_arr_params = [['a', 'b'], ['c', 'd'], ['a', 'e'], ['q', 'w'], ['a', 'r'], ['c','f']]
+    param_name = Services::CompareParams.new("LIGHTSTAR")
+    hash_arr_params = Hash[ arr_arr_params.group_by(&:first).map{ |k,a| [k,a.map(&:last)] } ]
+    result = hash_arr_params.map do |key, value|
+      name = param_name.compare(key)
+      "#{name}: #{value.join("##")}"
+    end
+    p result.join(" --- ")
   end
 
 
   task a: :environment do
     FileUtils.rm_rf(Dir.glob('public/swg.csv'))
-    FileUtils.rm_rf(Dir.glob('public/test.csv'))
+    FileUtils.rm_rf(Dir.glob('public/swg_sherlock.csv'))
 
     url = "https://swgshop.ru/upload/swgshop_export_full_price_qty.csv"
     download = RestClient::Request.execute(method: :get, url: url, raw_response: true, verify_ssl: false )
-    download_path = Rails.public_path.to_s + '/swg.csv'
-    IO.copy_stream(download.file.path, download_path)
+    # download_path = Rails.public_path.to_s + '/swg.csv'
+    # IO.copy_stream(download.file.path, download_path)
 
-    content = File.read(download_path)
-    detection = CharlockHolmes::EncodingDetector.detect(content)
-    p utf8_encoded_content = CharlockHolmes::Converter.convert(content, detection[:encoding], 'UTF-8')
+    # content = File.read(download.body.gsub!("\r", '').force_encoding('UTF-8'))
+    # detection = CharlockHolmes::EncodingDetector.detect(content)
+    # utf8_encoded_content = CharlockHolmes::Converter.convert(content, detection[:encoding], 'UTF-8')
 
+    File.open(Rails.public_path.to_s + '/swg_sherlock.csv', "a+") do |f|
+      f.write download.body.gsub!("\r", '').force_encoding('UTF-8')
+    end
+
+    CSV.open(Rails.public_path.to_s + '/swg_sherlock.csv', :row_sep => :auto, :col_sep => ";", quote_char: "\x00") do |csv|
+      csv.each do |c|
+        p c
+      end
+    end
+    # file_path = File.read(Rails.public_path.to_s + '/swg_sherlock.csv')
+
+    # spreadsheet = Roo::CSV.new(Rails.public_path.to_s + '/swg_sherlock.csv', csv_options: {col_sep: ";", quote_char: "\x00"})
+    #
+    # spreadsheet.each_with_pagename do |_name, sheet|
+    #   sheet.parse(headers: true).each do |row|
+    #     pp row if row[0] == "\"00-00007381\""
+    #   end
+    #   p sheet.parse(headers: true).count
+    # end
     # url = "https://swgshop.ru/upload/swgshop_export_full.csv"
     # url = "https://swgshop.ru/upload/swgshop_export_full_price_qty.csv"
 
